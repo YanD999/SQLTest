@@ -59,5 +59,24 @@ con.connect(function(err) {
       if (err) throw err;
       console.log("Number of records inserted: " + result.affectedRows);
     });*/
-    
+       
+    //Inserts one value and returns it's ID (Only works with auto-incremental ID's)
+    /*var sql = "INSERT INTO customers (name, address) VALUES ('Michelle', 'Blue Village 1')";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("1 record inserted, ID: " + result.insertId);
+    });*/
+
+    //SELECT * FROM table query
+    /*con.query("SELECT * FROM customers", function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    //SELECT columns FROM table query
+    con.query("SELECT name, address FROM customers", function (err, result, fields) {
+        if (err) throw err;
+        //console.log(result);
+        console.log(result[2].address);
+    });
 });
