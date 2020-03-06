@@ -74,9 +74,36 @@ con.connect(function(err) {
     });*/
 
     //SELECT columns FROM table query
-    con.query("SELECT name, address FROM customers", function (err, result, fields) {
+    /*con.query("SELECT name, address FROM customers", function (err, result, fields) {
         if (err) throw err;
-        //console.log(result);
-        console.log(result[2].address);
+        console.log(result);
+        //console.log(result[2].address);
+    });*/
+
+    //SELECT * FROM table query and return the fields
+    /*con.query("SELECT name, address FROM customers", function (err, result, fields) {
+        if (err) throw err;
+        console.log(fields);
+        //console.log(fields[1].name);
+        //console.log(fields[1]._clientEncoding);
+    });*/
+
+    //SELECT * FROM table query with a WHERE condition
+    /*con.query("SELECT * FROM customers WHERE address = 'Park Lane 38'", function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    //SELECT * FROM table query with a WHERE wildcard condition
+    /*con.query("SELECT * FROM customers WHERE address LIKE 'S%'", function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    var adr = 'Mountain 21';
+    var sql = 'SELECT * FROM customers WHERE address = ' + mysql.escape(adr);
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
     });
 });
