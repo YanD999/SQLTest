@@ -100,9 +100,39 @@ con.connect(function(err) {
         console.log(result);
     });*/
 
-    var adr = 'Mountain 21';
+    //query value defined by user, use escape value (counters SQL injections)
+    /*var adr = 'Mountain 21';
     var sql = 'SELECT * FROM customers WHERE address = ' + mysql.escape(adr);
     con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    //query value defined by user, use escape value (counters SQL injections) (other option)
+    /*var adr = 'Mountain 21';
+    var sql = 'SELECT * FROM customers WHERE address = ?';
+    con.query(sql, [adr], function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    //Query value's defined by user, use escape value (counters SQL injections) (other option)
+    /*var name = 'Amy';
+    var adr = 'Mountain 21';
+    var sql = 'SELECT * FROM customers WHERE name = ? OR address = ?';
+    con.query(sql, [name, adr], function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    //Order by value
+    /*con.query("SELECT * FROM customers ORDER BY name", function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    //Order by value DESC
+    con.query("SELECT * FROM customers ORDER BY name DESC", function (err, result) {
         if (err) throw err;
         console.log(result);
     });
