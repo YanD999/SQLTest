@@ -125,14 +125,63 @@ con.connect(function(err) {
         console.log(result);
     });*/
 
-    //Order by value
+    //Order by value ASC(by default)
     /*con.query("SELECT * FROM customers ORDER BY name", function (err, result) {
         if (err) throw err;
         console.log(result);
     });*/
 
     //Order by value DESC
-    con.query("SELECT * FROM customers ORDER BY name DESC", function (err, result) {
+    /*con.query("SELECT * FROM customers ORDER BY name DESC", function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    //DELETE record
+    /*var sql = "DELETE FROM customers WHERE address = 'Mountain 21'";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Number of records deleted: " + result.affectedRows);
+    });*/
+
+    //DROP table
+    /*var sql = "DROP TABLE customers";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Table deleted");
+    });*/
+
+    //DROP table only if exists
+    /*var sql = "DROP TABLE IF EXISTS customers";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    //UPDATE TABLE
+    /*var sql = "UPDATE customers SET address = 'Canyon 123' WHERE address = 'Valley 345'";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result.affectedRows + " record(s) updated");
+    });*/
+
+    //limit table
+    /*var sql = "SELECT * FROM customers LIMIT 5";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    //Limit table with an offset
+    /*var sql = "SELECT * FROM customers LIMIT 5 OFFSET 2";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    });*/
+
+    //Same as above, shorter
+    var sql = "SELECT * FROM customers LIMIT 2, 5";
+    con.query(sql, function (err, result) {
         if (err) throw err;
         console.log(result);
     });
