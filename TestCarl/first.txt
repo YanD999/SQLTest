@@ -1,0 +1,13 @@
+Make sure you have installed nodejs.
+
+the command you'll be using most of the time is node <name of the js you want to run>
+
+Normally all the modules should present
+
+WATCH OUT: 
+
+    user: "root",
+    password: "root"
+
+    You might have to change these!!!
+
