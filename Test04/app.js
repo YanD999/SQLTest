@@ -1,9 +1,26 @@
 var express = require("express");
+var mysql = require("mysql");
 var app = express();
 
 
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "join_us"
+});
+
+
 app.get("/", function(req, res){
-    res.send("You've reached the home page!");
+    //res.send("You've reached the home page!");
+
+    //Find count of user in DB and respond with that count
+    var q = "SELECT COUNT (*) AS count FROM users";
+    con.query(q, function(err, results){
+        if(err) throw err;
+        var count = (results[0].count);
+        res.send("We have " + count + " users in our DB");
+    });
 });
 
 app.get("/joke", function(req, res){
