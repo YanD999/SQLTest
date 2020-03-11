@@ -19,8 +19,8 @@ app.get("/", function(req, res){
     var q = "SELECT * FROM users";
     connection.query(q, function(err, results){
         if(err) throw err;
-        testResult = results
-        res.render("home", testResult);
+        var testResult = JSON.stringify(results);
+        res.render("home", {testResult});
     });
 });
 
