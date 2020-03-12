@@ -24,8 +24,8 @@ app.get("/", function(req, res){
             var a = (results[i].email);
             arr.push(a);
         }
-        var testResult = JSON.stringify(arr, null, '\n');
-        res.render("home", {testResult});
+        var testResult = arr;
+        res.render("home", {testResult: testResult});
     });
 });
 
@@ -36,6 +36,21 @@ app.post("/register", function(req, res){
     connection.query('INSERT INTO users SET ?', person, function(err, result) {
         if (err) throw err;
         res.redirect("/");
+    });
+});
+
+app.post("/search", function(req, res){
+    var user = "%" + req.body.search + "%";
+    let arr = [];
+    connection.query('SELECT email FROM users WHERE email =  ?', user, function(err, result) {
+        console.log("SELECT email FROM users WHERE email = " + user);
+        if (err) throw err;
+        for (var i = 0; i < result.length; i++) {
+            var a = (result[i]);
+            arr.push(a);
+        }
+        console.log("x: " + arr[0]);
+        res.render("found");
     });
 });
 

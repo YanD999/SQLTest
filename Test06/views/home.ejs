@@ -7,14 +7,19 @@
           </tr>
         </thead>
         <tbody>
-            <td>
-                <%= testResult %>
-            </td>
+            <% for( let index = 0; index < testResult.length; index++ ) { %>
+            <tr><td><%= testResult[index] %></td></tr>
+            <% } %>
         </tbody>
       </table>
-    <!-- <%= testResult %> -->
     <form method="POST" action='/register'>
         <input type="text" class="form" name="email" placeholder="Enter Your Email">
         <button>Join Now</button>
     </form>
+    <form method="POST" action='/search'>
+        <input type="text" class="form" name="search" placeholder="Enter Your Email">
+        <button>search</button>
+    </form>
 </body>
+
+<!-- //testResult -->
