@@ -5,7 +5,7 @@ var app = express();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
-//app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public"));
 
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -17,9 +17,14 @@ var connection = mysql.createConnection({
 app.get("/", function(req, res){
     // Find count of users in DB
     var q = "SELECT * FROM users";
-    connection.query(q, function(err, results){
+    var arr = [];
+    connection.query(q, function(err, results, fields){
         if(err) throw err;
-        var testResult = JSON.stringify(results);
+        for (var i = 0; i < results.length; i++) {
+            var a = (results[i].email);
+            arr.push(a);
+        }
+        var testResult = JSON.stringify(arr, null, '\n');
         res.render("home", {testResult});
     });
 });

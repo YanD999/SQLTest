@@ -1,5 +1,18 @@
 <body>
-    <%= testResult %>
+    <table id="testResult">
+        <thead>
+          <tr>
+            <th>email</th>
+            <th>created</th>
+          </tr>
+        </thead>
+        <tbody>
+            <td>
+                <%= testResult %>
+            </td>
+        </tbody>
+      </table>
+    <!-- <%= testResult %> -->
     <form method="POST" action='/register'>
         <input type="text" class="form" name="email" placeholder="Enter Your Email">
         <button>Join Now</button>
