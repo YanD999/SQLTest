@@ -57,6 +57,20 @@ app.post("/search", function(req, res){
     });
 });
 
+app.post("/replace", function(req, res){
+    var replaceFrom = req.body.replaceFrom;
+    var replaceTo = req.body.replaceTo;
+    let arr = [];
+    connection.query('UPDATE users SET email = ? WHERE email = ?', [replaceTo, replaceFrom], function(err, result) {
+        if (err) throw err;
+        for (var i = 0; i < result.length; i++) {
+            var a = (result[i].email);
+            arr.push(a);
+        }
+        res.redirect("/");
+    });
+});
+
 app.listen(8080, function(){
     console.log("Server running on 8080!");
 });
