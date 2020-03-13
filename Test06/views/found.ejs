@@ -2,7 +2,12 @@
 <tbody>
     <tr><td><%= searchResult.length %> results found<br>&nbsp;<br></td></tr>
     <% for( let index = 0; index < searchResult.length; index++ ) { %>
-    <tr><td><%= searchResult[index] %></td></tr><br>
+        <tr>
+            <td>
+                <%= searchResult[index] %>
+            </td>
+        </tr>
+        <br>
     <% } %>
 </tbody>
 &nbsp;<br>

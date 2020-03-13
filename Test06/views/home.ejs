@@ -8,10 +8,14 @@
         </thead>
         <tbody>
             <% for( let index = 0; index < emailResult.length; index++ ) { %>
-            <tr><td><%= emailResult[index] %></td></tr>
-            <% } %>
-            <% for( let index = 0; index < createdResult.length; index++ ) { %>
-                <tr><td><%= createdResult[index] %></td></tr>
+                <tr>
+                    <td>
+                        <%= emailResult[index] %>
+                    </td>
+                    <td>
+                        <%= createdResult[index] %>
+                    </td>
+                </tr>
             <% } %>
         </tbody>
       </table>

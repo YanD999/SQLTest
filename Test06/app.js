@@ -24,10 +24,8 @@ app.get("/", function(req, res){
         for (var i = 0; i < results.length; i++) {
             var a = (results[i].email);
             arra.push(a);
-        };
-        for (var i = 0; i < results.length; i++) {
-            var a = (results[i].created_at);
-            arrb.push(a);
+            var b = (results[i].created_at);
+            arrb.push(b);
         };
         var emailResult = arra;
         var createdResult = arrb;
