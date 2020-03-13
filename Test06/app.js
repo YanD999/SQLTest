@@ -17,15 +17,21 @@ var connection = mysql.createConnection({
 app.get("/", function(req, res){
     // Find count of users in DB
     var q = "SELECT * FROM users";
-    var arr = [];
+    var arra = [];
+    var arrb = [];
     connection.query(q, function(err, results, fields){
         if(err) throw err;
         for (var i = 0; i < results.length; i++) {
             var a = (results[i].email);
-            arr.push(a);
-        }
-        var testResult = arr;
-        res.render("home", {testResult: testResult});
+            arra.push(a);
+        };
+        for (var i = 0; i < results.length; i++) {
+            var a = (results[i].created_at);
+            arrb.push(a);
+        };
+        var emailResult = arra;
+        var createdResult = arrb;
+        res.render("home", {emailResult: emailResult, createdResult:createdResult});
     });
 });
 
@@ -42,15 +48,14 @@ app.post("/register", function(req, res){
 app.post("/search", function(req, res){
     var user = "%" + req.body.search + "%";
     let arr = [];
-    connection.query('SELECT email FROM users WHERE email =  ?', user, function(err, result) {
-        console.log("SELECT email FROM users WHERE email = " + user);
+    connection.query('SELECT email FROM users WHERE email like ?', user, function(err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
-            var a = (result[i]);
+            var a = (result[i].email);
             arr.push(a);
         }
-        console.log("x: " + arr[0]);
-        res.render("found");
+        var searchResult = arr;
+        res.render("found", {searchResult: searchResult});
     });
 });
 
