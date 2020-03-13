@@ -67,7 +67,15 @@ app.post("/replace", function(req, res){
             var a = (result[i].email);
             arr.push(a);
         }
-        res.redirect("/");
+        res.render("./home");
+    });
+});
+
+app.post("/delete", function(req, res){
+    var toDelete = req.body.delete;
+    connection.query('DELETE FROM users WHERE email = ?', toDelete, function(err, result) {
+        if (err) throw err;
+        res.render("./home");
     });
 });
 

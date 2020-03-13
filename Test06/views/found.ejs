@@ -12,5 +12,16 @@
 </tbody>
 &nbsp;<br>
 
+<form method="POST" action='/replace'>
+    <input type="text" class="form" name="replaceFrom" placeholder="Email to be updated">
+    <input type="text" class="form" name="replaceTo" placeholder="Updated Email">
+    <button>replace</button>
+</form>
+
+<form method="POST" action='/delete'>
+    <input type="text" class="form" name="delete" placeholder="Email to be deleted">
+    <button>delete</button>
+</form>
+
 <!-- This doesn't work!!!! -->
 <a href="home.ejs"> go back </a>
