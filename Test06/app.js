@@ -39,7 +39,7 @@ app.post("/register", function(req, res){
     };
     connection.query('INSERT INTO users SET ?', person, function(err, result) {
         if (err) throw err;
-        res.render("/");
+        res.redirect("/");
     });
 });
 
@@ -67,7 +67,7 @@ app.post("/replace", function(req, res){
             var a = (result[i].email);
             arr.push(a);
         }
-        res.render("./home");
+        res.redirect("/");
     });
 });
 
@@ -75,9 +75,14 @@ app.post("/delete", function(req, res){
     var toDelete = req.body.delete;
     connection.query('DELETE FROM users WHERE email = ?', toDelete, function(err, result) {
         if (err) throw err;
-        res.render("./home");
+        res.redirect("/");
     });
 });
+
+//Doesn't work, To be completed
+app.get("/moreInfo", function(req, res){
+    res.render("show")
+})
 
 app.listen(8080, function(){
     console.log("Server running on 8080!");
