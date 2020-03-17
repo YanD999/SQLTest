@@ -5,7 +5,7 @@ var app = express();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/views"));
 
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -39,7 +39,7 @@ app.post("/register", function(req, res){
     };
     connection.query('INSERT INTO users SET ?', person, function(err, result) {
         if (err) throw err;
-        res.redirect("/");
+        res.render("/");
     });
 });
 
