@@ -1,14 +1,13 @@
 <tbody>
-    <tr><td><%= searchResult.length %> More info: <br>&nbsp;<br></td></tr>
-    <% for( let index = 0; index < searchResult.length; index++ ) { %>
+    <tr><td><%= infoResult.length %> More info: <br>&nbsp;<br></td></tr>
+    <% for( let index = 0; index < infoResult.length; index++ ) { %>
         <tr>
             <td>
-                <%= searchResult[index] %>
-            </td>
+                email: <%= infoResult[index] %>
+                <br>&nbsp;<br></td>
             <td>
-                <%= createdResult[index] %>
+                created at: <%= moreCreated[index] %>
             </td>
-            <button onclick=<%{console.log(index)}%>>Click me</button>
         </tr>
         <br>
     <% } %>

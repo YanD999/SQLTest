@@ -16,7 +16,10 @@
                         <%= createdResult[index] %>
                     </td>
                     <td>
-                        <input type="button" value="button name" onclick=<%console.log(emailResult[index])%>>
+                        <form method="POST" action='/moreInfo'>
+                            <input type="text" class="form" name="more" value="<%= emailResult[index] %>" style="display: none;">
+                            <button>Info</button>
+                        </form>
                     </td>
                 </tr>
             <% } %>
@@ -40,5 +43,4 @@
         <button>delete</button>
     </form>
 </body>
-
 <!-- //testResult -->
