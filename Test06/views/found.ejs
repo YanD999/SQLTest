@@ -6,8 +6,13 @@
             <td>
                 <%= searchResult[index] %>
             </td>
+            <td>
+                <form method="POST" action='/moreInfo'>
+                    <input type="text" class="form" name="more" value="<%= searchResult[index] %>" style="display: none;">
+                    <button>Info</button>
+                </form>
+            </td>
         </tr>
-        <br>
     <% } %>
 </tbody>
 &nbsp;<br>

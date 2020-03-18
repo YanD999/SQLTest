@@ -71,6 +71,20 @@ app.post("/replace", function(req, res){
     });
 });
 
+app.post("/replaceShow", function(req, res){
+    let replaceFrom = req.body.replaceFrom;
+    let replaceTo = req.body.replaceTo;
+    let arr = [];
+    connection.query('UPDATE users SET email = ? WHERE email = ?', [replaceTo, replaceFrom], function(err, result) {
+        if (err) throw err;
+        for (let i = 0; i < result.length; i++) {
+            let a = (result[i].email);
+            arr.push(a);
+        }
+        res.redirect("/");
+    });
+});
+
 app.post("/delete", function(req, res){
     let toDelete = req.body.delete;
     connection.query('DELETE FROM users WHERE email = ?', toDelete, function(err, result) {
@@ -86,7 +100,6 @@ app.post("/moreInfo", function(req, res){
     let arrd = [];
     connection.query('SELECT * FROM users WHERE email like ?', more, function(err, result) {
         if (err) throw err;
-        console.log(result);
         for (let i = 0; i < result.length; i++) {
             let a = (result[i].email);
             arrc.push(a);
