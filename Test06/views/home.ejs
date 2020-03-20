@@ -23,24 +23,36 @@
                     </td>
                 </tr>
             <% } %>
+            <form method="GET" action="/previous">
+                <a href="/?page=<%= i %> " class="form">&laquo; Previous</a>
+            </form>
+            <form method="GET" action="/next">
+                <a href="/?page=<%= i %> " class="form" style="position: absolute; right: 0;">Next &raquo;</a>
+            </form>
         </tbody>
       </table>
+
     <form method="POST" action='/register'>
         <input type="text" class="form" name="email" placeholder="Enter Your Email">
         <button>Join Now</button>
     </form>
+
     <form method="POST" action='/search'>
         <input type="text" class="form" name="search" placeholder="Search for Email">
         <button>search</button>
     </form>
+
     <form method="POST" action='/replace'>
         <input type="text" class="form" name="replaceFrom" placeholder="Email to be updated">
         <input type="text" class="form" name="replaceTo" placeholder="Updated Email">
         <button>replace</button>
     </form>
+
     <form method="POST" action='/delete'>
         <input type="text" class="form" name="delete" placeholder="Email to be deleted">
         <button>delete</button>
     </form>
+
+
 </body>
 <!-- //testResult -->

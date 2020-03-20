@@ -16,9 +16,10 @@ let connection = mysql.createConnection({
 
 app.get("/", function(req, res){
     // Find count of users in DB
-    let q = "SELECT * FROM users";
+    let q = "SELECT * FROM users LIMIT 5, 15";
     let arra = [];
     let arrb = [];
+    let i = 0;
     connection.query(q, function(err, results, fields){
         if(err) throw err;
         for (let i = 0; i < results.length; i++) {
@@ -29,8 +30,13 @@ app.get("/", function(req, res){
         };
         let emailResult = arra;
         let createdResult = arrb;
-        res.render("home", {emailResult: emailResult, createdResult:createdResult});
+        res.render("home", {emailResult: emailResult, createdResult:createdResult, i});
     });
+});
+
+app.get("./?page=:id", function(req, res){
+    var test = req.query.page;
+    console.log(test);
 });
 
 app.post("/register", function(req, res){
