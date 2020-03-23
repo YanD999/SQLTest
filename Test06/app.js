@@ -16,17 +16,17 @@ let connection = mysql.createConnection({
 });
 
 
-let i = 0;
 //renders the database (landing page)
 app.get("/", function(req, res){
     // Find count of users in DB
     let q = "SELECT * FROM users LIMIT ?, 15";
     let arra = [];
     let arrb = [];
-
-    let offset = i;
-    console.log(req.query.page);
-    connection.query(q, [offset],function(err, results, fields){
+    let i = (req.query.page || 0);
+    if (i < 0) i = 0;
+    let offset = parseInt((i*15));
+    if (offset > 0) --offset;
+    connection.query(q, offset,function(err, results, fields){
         if(err) throw err;
         for (let i = 0; i < results.length; i++) {
             let a = (results[i].email);
