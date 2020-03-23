@@ -7,6 +7,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/views"));
 
+//connects to the database
 let connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
@@ -14,6 +15,7 @@ let connection = mysql.createConnection({
   database : 'join_us'
 });
 
+//renders the database (landing page)
 app.get("/", function(req, res){
     // Find count of users in DB
     let q = "SELECT * FROM users LIMIT 5, 15";
@@ -34,10 +36,12 @@ app.get("/", function(req, res){
     });
 });
 
-app.get("/:page:id", function(req, res){
-    console.log(req.query.page);
+//adds paging to the website (DOESN'T WORK, can't extract the value out of the url)
+app.get("/", function(req, res){
+    console.log(req.baseUrl);
 });
 
+//adds a value to the database
 app.post("/register", function(req, res){
     let person = {
         email: req.body.email
@@ -48,6 +52,7 @@ app.post("/register", function(req, res){
     });
 });
 
+//loops trough the whole array and renders the fields with corresponding value's
 app.post("/search", function(req, res){
     let user = "%" + req.body.search + "%";
     let arr = [];
@@ -62,6 +67,7 @@ app.post("/search", function(req, res){
     });
 });
 
+//replaces the value of a specific field.
 app.post("/replace", function(req, res){
     let replaceFrom = req.body.replaceFrom;
     let replaceTo = req.body.replaceTo;
@@ -76,20 +82,37 @@ app.post("/replace", function(req, res){
     });
 });
 
+
+//replaces the values of a field and renders the same page with the updated value's
 app.post("/replaceShow", function(req, res){
     let replaceFrom = req.body.replaceFrom;
     let replaceTo = req.body.replaceTo;
     let arr = [];
+    let arrc = [];
+    let arrd = [];
     connection.query('UPDATE users SET email = ? WHERE email = ?', [replaceTo, replaceFrom], function(err, result) {
         if (err) throw err;
         for (let i = 0; i < result.length; i++) {
             let a = (result[i].email);
             arr.push(a);
         }
-        res.redirect("/");
+    });
+    connection.query('SELECT * FROM users WHERE email like ?', replaceTo, function(err, result) {
+        if (err) throw err;
+        for (let i = 0; i < result.length; i++) {
+            let a = (result[i].email);
+            arrc.push(a);
+            let b = (result[i].created_at);
+            arrd.push(b);
+        }
+        let infoResult = arrc;
+        let moreCreated = arrd;
+        res.render("show", {infoResult:infoResult, moreCreated:moreCreated});
     });
 });
 
+
+//delete's the inserted value
 app.post("/delete", function(req, res){
     let toDelete = req.body.delete;
     connection.query('DELETE FROM users WHERE email = ?', toDelete, function(err, result) {
@@ -98,7 +121,7 @@ app.post("/delete", function(req, res){
     });
 });
 
-//Doesn't work, To be completed
+//renders a page with more information about a field
 app.post("/moreInfo", function(req, res){
     let more = req.body.more;
     let arrc = [];
