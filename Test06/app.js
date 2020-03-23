@@ -15,14 +15,18 @@ let connection = mysql.createConnection({
   database : 'join_us'
 });
 
+
+let i = 0;
 //renders the database (landing page)
 app.get("/", function(req, res){
     // Find count of users in DB
-    let q = "SELECT * FROM users LIMIT 5, 15";
+    let q = "SELECT * FROM users LIMIT ?, 15";
     let arra = [];
     let arrb = [];
-    let i = 10;
-    connection.query(q, function(err, results, fields){
+
+    let offset = i;
+    console.log(req.query.page);
+    connection.query(q, [offset],function(err, results, fields){
         if(err) throw err;
         for (let i = 0; i < results.length; i++) {
             let a = (results[i].email);
@@ -34,11 +38,6 @@ app.get("/", function(req, res){
         let createdResult = arrb;
         res.render("home", {emailResult: emailResult, createdResult:createdResult, i});
     });
-});
-
-//adds paging to the website (DOESN'T WORK, can't extract the value out of the url)
-app.get("/", function(req, res){
-    console.log(req.baseUrl);
 });
 
 //adds a value to the database

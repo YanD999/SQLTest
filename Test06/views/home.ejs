@@ -23,10 +23,8 @@
                     </td>
                 </tr>
             <% } %>
-            <a href="/?page=<%= i %>" class="form">&laquo; Previous</a>
-            <form method="GET" action="?page=<%= i %>">
-                <a href="?page=<%= i %>" class="form" style="position: absolute; right: 0;">Next &raquo;</a>
-            </form>
+            <a href="?page=<%= i-1 %>" id="previous">&laquo; Previous</a>
+            <a href="?page=<%= i+1 %>"style="position: absolute; right: 0;">Next &raquo;</a>
         </tbody>
       </table>
 
