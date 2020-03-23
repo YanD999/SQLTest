@@ -15,13 +15,13 @@
 &nbsp;<br>
 
 <form method="POST" action='/replaceShow'>
-    <input type="text" class="form" name="replaceFrom" placeholder="Email to be updated">
-    <input type="text" class="form" name="replaceTo" placeholder="Updated Email">
+    <input type="text" class="form" name="replaceFrom" placeholder="Email to be updated" value="<%= infoResult %> " style="display: none;">
+    <input type="text" class="form" name="replaceTo" placeholder="Update Email">
     <button>replace</button>
 </form>
 
 <form method="POST" action='/delete'>
-    <input type="text" class="form" name="delete" placeholder="Email to be deleted">
+    <input type="text" class="form" name="delete" placeholder="Email to be deleted" value="<%= infoResult %> " style="display: none;">
     <button>delete</button>
 </form>
 

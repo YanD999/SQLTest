@@ -19,7 +19,7 @@ app.get("/", function(req, res){
     let q = "SELECT * FROM users LIMIT 5, 15";
     let arra = [];
     let arrb = [];
-    let i = 0;
+    let i = 10;
     connection.query(q, function(err, results, fields){
         if(err) throw err;
         for (let i = 0; i < results.length; i++) {
@@ -34,9 +34,8 @@ app.get("/", function(req, res){
     });
 });
 
-app.get("./?page=:id", function(req, res){
-    var test = req.query.page;
-    console.log(test);
+app.get("/:page:id", function(req, res){
+    console.log(req.query.page);
 });
 
 app.post("/register", function(req, res){
