@@ -1,0 +1,32 @@
+<p> Search results: </p>
+<tbody>
+    <tr><td><%= searchResult.length %> results found<br>&nbsp;<br></td></tr>
+    <% for( let index = 0; index < searchResult.length; index++ ) { %>
+        <tr>
+            <td>
+                <%= searchResult[index] %>
+            </td>
+            <td>
+                <form method="POST" action='/moreInfo'>
+                    <input type="text" class="form" name="more" value="<%= searchResult[index] %>" style="display: none;">
+                    <button>Info</button>
+                </form>
+            </td>
+        </tr>
+    <% } %>
+</tbody>
+&nbsp;<br>
+
+<form method="POST" action='/replace'>
+    <input type="text" class="form" name="replaceFrom" placeholder="Email to be updated">
+    <input type="text" class="form" name="replaceTo" placeholder="Updated Email">
+    <button>replace</button>
+</form>
+
+<form method="POST" action='/delete'>
+    <input type="text" class="form" name="delete" placeholder="Email to be deleted">
+    <button>delete</button>
+</form>
+
+
+<a href="/"> go back </a>

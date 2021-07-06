@@ -1,0 +1,29 @@
+<tbody>
+    <tr><td><%= infoResult.length %> More info: <br>&nbsp;<br></td></tr>
+    <% for( let index = 0; index < infoResult.length; index++ ) { %>
+        <tr>
+            <td>
+                email: <%= infoResult[index] %>
+                <br>&nbsp;<br></td>
+            <td>
+                created at: <%= moreCreated[index] %>
+            </td>
+        </tr>
+        <br>
+    <% } %>
+</tbody>
+&nbsp;<br>
+
+<form method="POST" action='/replaceShow'>
+    <input type="text" class="form" name="replaceFrom" placeholder="Email to be updated" value="<%= infoResult %> " style="display: none;">
+    <input type="text" class="form" name="replaceTo" placeholder="Update Email">
+    <button>replace</button>
+</form>
+
+<form method="POST" action='/delete'>
+    <input type="text" class="form" name="delete" placeholder="Email to be deleted" value="<%= infoResult %> " style="display: none;">
+    <button>delete</button>
+</form>
+
+
+<a href="/"> go back </a>
